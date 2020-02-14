@@ -1,12 +1,6 @@
 import React from "react";
 import "../Pages/Main.css";
 
-class NewReply extends React.Component {
-  render() {
-    return {};
-  }
-}
-
 class Feed extends React.Component {
   max_content_id = 0;
   state = {
