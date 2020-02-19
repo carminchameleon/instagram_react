@@ -4,11 +4,13 @@ import "../Pages/Main.css";
 class Feed extends React.Component {
   max_content_id = 0;
   state = {
-    comment: "", // 우선은 비어있는 상태
-    comments: []
+    // 우선은 비어있는 상태
+    comment: "", // 하나의 댓글
+    comments: [] // 댓글들을 넣을 배열
   };
 
   handleComment = e => {
+    console.log(e.target);
     this.setState({
       comment: e.target.value
     });
@@ -17,9 +19,8 @@ class Feed extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log(e);
-
     if (this.state.comment) {
+      // 만약 댓글이 있다면
       this.max_content_id += 1;
       this.state.comments.push({
         id: this.max_content_id,
@@ -27,6 +28,7 @@ class Feed extends React.Component {
         contents: this.state.comment
       });
     }
+    console.log(this.state.comments[0]);
     this.setState({
       comment: ""
     });
@@ -36,13 +38,13 @@ class Feed extends React.Component {
   };
 
   render() {
-    console.log(this.state.comments);
     const commentsList = this.state.comments.map(reply => (
       <div className="commentSet" key={reply.id}>
         <span className="commentId">{reply.user}</span>
         <span className="commentContents">{reply.contents}</span>
       </div>
     ));
+    console.log(commentsList);
     return (
       <div className="feed">
         <article className="article">
@@ -126,20 +128,16 @@ class Feed extends React.Component {
             </div>
             <div className="reply_line"></div>
             <div className="replyComment">
-              <form
-                // onSubmit={this.handleSubmit.bind(this)}
-                className="replyForm"
-                action="submit"
-              >
-                <input
-                  onChange={this.handleComment.bind(this)}
+              <form className="replyForm" action="submit">
+                <input // input창에 뭔가를 입력했을 때 발생하는 이벤트. onChange
+                  onChange={this.handleComment.bind(this)} // handleComment라는 함수가 실행된다.
                   className="replyInput"
                   type="text"
                   placeholder="댓글 달기..."
                   value={this.state.comment}
                 />
                 <button
-                  onClick={this.handleSubmit.bind(this)}
+                  onClick={this.handleSubmit}
                   className="replyBtn"
                   style={{ opacity: this.state.comment ? "1" : "" }}
                 >

@@ -46,7 +46,8 @@ class Login extends React.Component {
                     type="text"
                     name="id" // input을 구분하기 위해서 name을 지정
                     value={this.state.id}
-                    onInput={this.handleChange.bind(this)} // 이벤트 핸들러를 onChange로 해도 된다.
+                    // 이벤트 핸들러를 onChange로 해도 된다.
+                    onInput={this.handleChange}
                     placeholder="전화번호, 사용자 이름 또는 이메일"
                   />
                 </div>
@@ -56,7 +57,7 @@ class Login extends React.Component {
                     type="text"
                     name="pw" // input을 구분하기 위해서 name을 지정. this.state.pw 이므로 이름을 같게 설정
                     value={this.state.pw}
-                    onInput={this.handleChange.bind(this)} // 이벤트 핸들러를 onChange로 해도 된다.
+                    onInput={this.handleChange} // 이벤트 핸들러를 onChange로 해도 된다.
                     placeholder="비밀번호"
                   />
                 </div>
